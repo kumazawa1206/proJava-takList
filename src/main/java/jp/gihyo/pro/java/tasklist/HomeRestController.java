@@ -20,9 +20,8 @@ public class HomeRestController {
 
   private List<TaskItem> taskItems = new ArrayList<>();
 
-
   //クライアントからのリクエストを処理するメソッド
-  //http:~/resthelloを入力すると返り値を返す
+  //http:~/restHelloを入力すると返り値を返す
   @RequestMapping(value = "/resthello")
   String hello() {
     return """
@@ -33,8 +32,7 @@ public class HomeRestController {
   }
 
   //エンドポイントの作成
-  //タスクを追加したり、登録されているタスクの一覧表示
-  //
+  //タスクを追加する
   @GetMapping("/restadd")
   String addItem(@RequestParam("task") String task,
       @RequestParam("deadline") String deadline) {
@@ -44,6 +42,8 @@ public class HomeRestController {
     return "タスクを追加しました。";
   }
 
+  //エンドポイントの作成
+  //登録されているタスクの一覧表示
   @GetMapping("/restlist")
   String listItems() {
     String result = taskItems.stream()
