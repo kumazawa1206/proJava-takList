@@ -11,6 +11,8 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Service;
 
+//データベース操作用のクラス
+
 @Service
 public class TaskListDao {
 
@@ -45,6 +47,12 @@ public class TaskListDao {
         .toList();
 
     return taskItems;
+  }
+
+  //タスク情報を削除するメソッド
+  public int delete(String id) {
+    int number = jdbcTemplate.update("DELETE FROM tasklist WHERE id = ?", id);
+    return number;
   }
 
 }
