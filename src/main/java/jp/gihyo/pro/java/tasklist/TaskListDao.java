@@ -55,4 +55,14 @@ public class TaskListDao {
     return number;
   }
 
+  //タスク情報を更新するメソッド
+  public int update(TaskItem taskItem) {
+    int number = jdbcTemplate.update(
+        "UPDATE tasklist SET task = ?, deadline = ?, done = ? WHERE id = ?",
+        taskItem.task(),
+        taskItem.deadline(),
+        taskItem.done(),
+        taskItem.id());
+    return number;
+  }
 }
