@@ -16,20 +16,21 @@
     <label>タスク</label>
     <input name="task" type="text"/>
     <label>期限</label>
-    <input name="deadline" typa="date"/>
+    <input name="deadline" type="date"/>
     <input type="submit" value="登録"/>
   </form>
 </div>
 
 <div class="tasklist">
   <h2>現在のタスク一覧</h2>
-  <table border="1" style="border-collapse:collapse;">
+  <table border="1">
     <thead>
     <tr>
       <th class="hidden">ID</th>
       <th>タスク</th>
-      <th>期限</th>
-      <th>状態</th>
+      <th width="150px">期限</th>
+      <th width="100px">状態</th>
+      <th></th>
     </tr>
     </thead>
 
@@ -39,9 +40,16 @@
       <td th:text="${task.task}"></td>
       <td width="100px" th:text="${task.deadline}"></td>
       <td width="50px" th:text="${task.done}?'完了':'未完了'"></td>
+      <td width="50px">
+        <form action="/delete">
+          <button type="submit" id="delete_button">削除</button>
+          <input type="hidden" name="id" th:value="${task.id}"/>
+        </form>
+      </td>
     </tr>
     </tbody>
   </table>
+
 </div>
 </body>
 </html>
